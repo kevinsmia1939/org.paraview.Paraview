@@ -2,7 +2,7 @@ Paraview Flatpak
 ====================
 
 This Flatpak manifest file is work in progress.
-Need Numpy, Matplotlib, Exaamples, etc.
+Need Numpy, Matplotlib, Examples, etc.
  
 Flatpak is a utility for software deployment and package management for Linux. 
 It offers a sandbox environment in which users can run application software in isolation from the rest of the system.
