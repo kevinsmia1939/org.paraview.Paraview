@@ -16,8 +16,8 @@ cleanup:
   #- /include
   #- /lib/cmake
   #- /share/doc
-  - "*.la"
-  - "*.a"
+  #- "*.la"
+  #- "*.a"
 
 modules:
   - shared-modules/glew/glew.json
@@ -32,6 +32,7 @@ modules:
         url: https://files.pythonhosted.org/packages/d2/48/f445be426ccd9b2fb64155ac6730c7212358882e589cd3717477d739d9ff/numpy-1.20.1.zip
         sha256: 3bc63486a870294683980d76ec1e3efc786295ae00128f9ea38e2c6e74d5a60a
 
+    # matplotlib dep    
   - name: certifi
     buildsystem: simple
     build-commands:
@@ -53,6 +54,24 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/22/d4/e7ca532e68a9357742604e1e4ae35d9c09a4a810de39a9d80402bd12f50f/matplotlib-3.3.4.tar.gz
         sha256: 3e477db76c22929e4c6876c44f88d790aacdf3c3f8f3a90cb1975c0bf37825b0
+ 
+  - name: setuptools_scm
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/cd/66/fa77e809b7cb1c2e14b48c7fc8a8cd657a27f4f9abb848df0c967b6e4e11/setuptools_scm-4.1.2.tar.gz
+        sha256: a8994582e716ec690f33fec70cca0f85bd23ec974e3f783233e4879090a7faa8 
+ 
+  - name: python-dateutil
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/be/ed/5bbc91f03fa4c839c4c7360375da77f9659af5f7086b7a7bdda65771c8e0/python-dateutil-2.8.1.tar.gz
+        sha256: 73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c
   
   - name: Boost
     buildsystem: simple
@@ -81,7 +100,7 @@ modules:
         sha256: 73866fb77090819b6a8c85cb8539638d37d6877455825b74e289d647a39fd5b5
     cleanup:
       - /share/man
-      - /share/openmpi
+      #- /share/openmpi
 
     # Paraview need 32GB of memory to build
   - name: Paraview
