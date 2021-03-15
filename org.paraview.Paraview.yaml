@@ -1,6 +1,6 @@
 app-id: org.paraview.Paraview
-base: io.qt.qtwebengine.BaseApp
-base-version: '5.15'
+#base: io.qt.qtwebengine.BaseApp
+#base-version: '5.15'
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
@@ -54,6 +54,15 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/22/d4/e7ca532e68a9357742604e1e4ae35d9c09a4a810de39a9d80402bd12f50f/matplotlib-3.3.4.tar.gz
         sha256: 3e477db76c22929e4c6876c44f88d790aacdf3c3f8f3a90cb1975c0bf37825b0
+        
+  - name: pyparsing
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
+        sha256: c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1
  
   - name: setuptools_scm
     buildsystem: simple
