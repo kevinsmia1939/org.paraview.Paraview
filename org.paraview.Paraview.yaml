@@ -11,13 +11,12 @@ finish-args:
   - --socket=fallback-x11
   - --device=dri
   - --share=network
-  - --filesystem=home
 cleanup:
-  #- /include
-  #- /lib/cmake
-  #- /share/doc
-  #- "*.la"
-  #- "*.a"
+  - /include
+  - /lib/cmake
+  - /share/doc
+  - "*.la"
+  - "*.a"
 
 modules:
   - shared-modules/glew/glew.json
@@ -31,8 +30,7 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/d2/48/f445be426ccd9b2fb64155ac6730c7212358882e589cd3717477d739d9ff/numpy-1.20.1.zip
         sha256: 3bc63486a870294683980d76ec1e3efc786295ae00128f9ea38e2c6e74d5a60a
-
-    # matplotlib dep    
+   
   - name: certifi
     buildsystem: simple
     build-commands:
@@ -137,6 +135,7 @@ modules:
       
   - name: Paraview-documentation
     buildsystem: simple
+    build-commands:
       - install -Dm0644 ParaViewGettingStarted-5.9.0.pdf /app/share/paraview-5.9/doc/ParaViewGettingStarted-5.9.0.pdf
       - install -Dm0644 ParaViewCatalystGuide-5.9.0.pdf /app/share/paraview-5.9/doc/ParaViewCatalystGuide-5.9.0.pdf
     sources:
@@ -151,8 +150,8 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir /app/share/paraview-5.9/examples
-      - tar -xvzf ParaViewTestingDataFiles-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples
-      - tar -xvzf ParaViewTestingDataStore-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples
+      - tar -xvzf ParaViewTestingDataFiles-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples --strip 1
+      - tar -xvzf ParaViewTestingDataStore-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples --strip 1
     sources:
       - type: file
         url: https://www.paraview.org/files/v5.9/ParaViewTestingDataFiles-v5.9.0.tar.gz
