@@ -188,7 +188,7 @@ modules:
       - mkdir /app/share/paraview-5.9/examples
       - tar -xvzf ParaViewTestingDataFiles-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples --strip 1
       - tar -xvzf ParaViewTestingDataStore-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples --strip 1
-      - mv /app/share/paraview-5.9/examples/Testing/Data /app/share/paraview-5.9/examples
+      - cp -r /app/share/paraview-5.9/examples/Testing/Data/* /app/share/paraview-5.9/examples
     sources:
       - type: file
         url: https://www.paraview.org/files/v5.9/ParaViewTestingDataFiles-v5.9.0.tar.gz
