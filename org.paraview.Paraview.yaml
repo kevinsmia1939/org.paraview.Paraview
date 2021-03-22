@@ -7,14 +7,17 @@ runtime-version: '5.15'
 command: paraview
 finish-args:
   - --share=ipc
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --device=dri
   - --share=network
+  - --filesystem=host
 cleanup:
   - /include
   - /lib/cmake
+  - /lib/pkgconfig
   - /share/doc
+  - /share/man
+  - /etc
   - "*.la"
   - "*.a"
 
@@ -171,8 +174,8 @@ modules:
   - name: Paraview-documentation
     buildsystem: simple
     build-commands:
-      - install -Dm0644 ParaViewGettingStarted-5.9.0.pdf /app/share/paraview-5.9/doc/ParaViewGettingStarted-5.9.0.pdf
-      - install -Dm0644 ParaViewCatalystGuide-5.9.0.pdf /app/share/paraview-5.9/doc/ParaViewCatalystGuide-5.9.0.pdf
+      - install -Dm0644 ParaViewGettingStarted-5.9.0.pdf /app/share/paraview-5.9/doc/GettingStarted.pdf
+      - install -Dm0644 ParaViewCatalystGuide-5.9.0.pdf /app/share/paraview-5.9/doc/CatalystGuide.pdf
     sources:
       - type: file
         url: https://www.paraview.org/files/v5.9/ParaViewGettingStarted-5.9.0.pdf
@@ -186,9 +189,9 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir /app/share/paraview-5.9/examples
-      - tar -xvzf ParaViewTestingDataFiles-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples --strip 1
-      - tar -xvzf ParaViewTestingDataStore-v5.9.0.tar.gz -C /app/share/paraview-5.9/examples --strip 1
-      - cp -r /app/share/paraview-5.9/examples/Testing/Data/* /app/share/paraview-5.9/examples
+      - tar -xvzf ParaViewTestingDataFiles-v5.9.0.tar.gz ParaView-v5.9.0/Testing/Data/can.ex2 ParaView-v5.9.0/Testing/Data/disk_out_ref.ex2 --strip 3
+      - ls -l
+      - mv can.ex2 disk_out_ref.ex2 /app/share/paraview-5.9/examples
     sources:
       - type: file
         url: https://www.paraview.org/files/v5.9/ParaViewTestingDataFiles-v5.9.0.tar.gz
